@@ -1,0 +1,17 @@
+#include <SoftwareSerial.h>
+const byte rxPin = 2;
+const byte txPin = 3;
+SoftwareSerial radioCom (rxPin, txPin);
+
+void setup() {
+  radioCom.begin(9600); 
+
+
+}
+
+void loop() {
+  radioCom.println("test101");
+
+  delay(1000);
+}
+
