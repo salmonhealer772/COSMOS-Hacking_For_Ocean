@@ -1,0 +1,22 @@
+#include <SoftwareSerial.h>
+
+SoftwareSerial radioComm(2,3);
+
+void setup() {
+  Serial.begin(9600);      // Initialize default serial port
+  radioComm.begin(9600);     // Initialize second serial port
+}
+void loop() {
+  // Receiving data from Serial
+  if (Serial.available()) {
+    char data = Serial.read();
+    // Do something with the received data
+  }
+
+  // Receiving data from Serial1
+  if (radioComm.available()) {
+    char data = radioComm.read();
+    // Do something with the received data
+    Serial.println(data);
+  }
+}

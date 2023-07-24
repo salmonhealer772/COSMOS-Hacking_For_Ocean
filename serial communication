@@ -1,0 +1,32 @@
+#include <SoftwareSerial.h>
+const byte rxPin = 2;
+const byte txPin = 3;
+static bool tx = true;
+SoftwareSerial radioCom (rxPin, txPin);
+
+void setup() {
+  Serial.begin(57600);
+  radioCom.begin(57600); 
+
+}
+
+void loop() {
+  
+  if (tx){
+    radioCom.write("test101\n");
+    delay(1000);
+    tx = false;
+  }
+  else{
+    if(Serial.available()){
+      char data =(char)Serial.read();
+      Serial.println(data);
+    }
+    if(radioCom.available()){
+      char data =(char)radioCom.read();
+      Serial.println(data);
+      tx = true;
+    }
+  }
+}
+
